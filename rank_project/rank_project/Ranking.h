@@ -10,10 +10,20 @@ struct PlayInfo {
 };
 
 class Rank {
-
+	PlayInfo player[MAX_RANK];
+	int nMVP = MAX_RANK;
 public:
-	void loadRanking(PlayInfo player[], int len, const char *filename);
-	void storeRanking(PlayInfo player[], int len, const char *filename);
-	void printRanking(PlayInfo player[], int len);
-	void initRanking(PlayInfo player[], int len);
+	Rank()
+	{
+		for (int i = 0; i < nMVP; i++)
+		{
+			strcpy(player[i].name, "ÃÊ±âÈ­");
+			player[i].nMove = 0;
+			player[i].tElapsed = 0.0;
+		}
+	}
+	void load(const char *filename);
+	void store( const char *filename);
+	void print();
+	int add(int nmvp, int nmove, double elapsed);
 };
